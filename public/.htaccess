@@ -1,0 +1,49 @@
+# Parco Solutions - static Next.js export served by Apache (GoDaddy cPanel).
+# This file is copied into /out on build. Upload the CONTENTS of /out to public_html.
+
+Options -MultiViews -Indexes
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Force HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Retired WordPress pages -> closest page on the new site (keeps search traffic)
+  RewriteRule ^service/(web-design|ui-ux-design|graphic-design-2)/?$ /service/web-development/ [R=301,L]
+  RewriteRule ^service/(digital-marketing|email-marketing)/?$ /solutions/ [R=301,L]
+  RewriteRule ^(pricing|our-team|shop|shop-2|cart|cart-2|checkout|checkout-2|my-account|my-account-2|courses|sample-page|home|home-page-02|home-page-03|home-page-04)/?$ / [R=301,L]
+
+  # /about-us -> /about-us/ when a matching exported folder exists
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Hashed build assets never change: cache for a year
+  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </If>
+  # Images and fonts: cache for 30 days
+  <FilesMatch "\.(webp|png|jpg|jpeg|svg|ico|woff2)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  # HTML: always revalidate so new builds show up immediately
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
