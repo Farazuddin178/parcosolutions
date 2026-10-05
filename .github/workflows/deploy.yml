@@ -1,0 +1,55 @@
+name: Build and deploy
+
+# Builds the static site and, when FTP secrets are configured, uploads /out
+# to GoDaddy cPanel. Runs on every push to main, on demand, and when
+# WordPress sends a repository_dispatch event (type: wordpress-update)
+# so new posts go live without touching the code.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  repository_dispatch:
+    types: [wordpress-update]
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      WP_URL: ${{ vars.WP_URL || 'https://parcosolutions.in' }}
+      NEXT_PUBLIC_WP_URL: ${{ vars.WP_URL || 'https://parcosolutions.in' }}
+      NEXT_PUBLIC_CF7_FORM_ID: ${{ vars.CF7_FORM_ID || '1253' }}
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: out
+          include-hidden-files: true
+          retention-days: 7
+
+      # Add FTP_SERVER, FTP_USERNAME and FTP_PASSWORD under
+      # Settings > Secrets and variables > Actions to enable this step.
+      - name: Upload to cPanel
+        if: env.FTP_SERVER != ''
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./out/
+          server-dir: ${{ vars.FTP_DIR || './public_html/' }}
