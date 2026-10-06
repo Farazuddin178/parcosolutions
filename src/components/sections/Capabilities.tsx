@@ -7,9 +7,9 @@ import { Reveal } from "../Reveal";
 export function HangingLamp({ className = "" }: { className?: string }) {
   return (
     <div aria-hidden className={`flex flex-col items-center ${className}`}>
-      <span className="h-3 w-2 rounded-full border border-[#59615c]" />
-      <span className="-mt-0.5 h-3 w-2 rounded-full border border-[#59615c]" />
-      <span className="relative mt-0.5 grid h-12 w-9 place-items-end justify-center border-2 border-signal/55 bg-signal/[0.06] pb-1 shadow-[0_0_34px_rgb(150_201_61/0.25)]">
+      <span className="h-3 w-2 rounded-full border border-[#33415a]" />
+      <span className="-mt-0.5 h-3 w-2 rounded-full border border-[#33415a]" />
+      <span className="relative mt-0.5 grid h-12 w-9 place-items-end justify-center border-2 border-signal/55 bg-signal/[0.06] pb-1 shadow-[0_0_34px_rgb(56_189_248/0.25)]">
         <Lamp />
       </span>
     </div>
@@ -25,7 +25,7 @@ export function Capabilities({ index = 1 }: { index?: number }) {
           <Reveal>
             <SectionIntro
               title="Built around the work you already do"
-              body="We build enterprise systems, websites and mobile apps that fit your processes, then staff and train the teams that run them."
+              body="From a law practice to a hospital, we build the software, systems and websites your business runs on, then host and support them."
             />
           </Reveal>
         </div>

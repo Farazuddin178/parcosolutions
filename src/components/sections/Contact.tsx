@@ -45,7 +45,7 @@ export function ContactDetails() {
   );
 }
 
-export function Contact({ index = 7 }: { index?: number }) {
+export function Contact({ index = 8 }: { index?: number }) {
   return (
     <section id="contact" className="smoke relative py-24 lg:py-32">
       <Container>

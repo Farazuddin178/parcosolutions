@@ -38,7 +38,7 @@ export function Divider({ index, title }: { index: number; title: string }) {
 
 export function Tag({ children }: { children: ReactNode }) {
   return (
-    <span className="notch inline-block bg-signal/10 px-3 py-1.5 font-pixel text-[11px] uppercase tracking-wider text-signal shadow-[inset_0_0_0_1px_rgb(150_201_61/0.55)]">
+    <span className="notch inline-block bg-signal/10 px-3 py-1.5 font-pixel text-[11px] uppercase tracking-wider text-signal shadow-[inset_0_0_0_1px_rgb(56_189_248/0.55)]">
       {children}
     </span>
   );

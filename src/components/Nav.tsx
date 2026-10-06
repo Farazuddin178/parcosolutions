@@ -5,7 +5,12 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { CaretDown, List, X } from "@phosphor-icons/react";
-import { nav, services, site } from "@/content/site";
+import { buildServices, enterpriseServices, nav, site } from "@/content/site";
+
+const groups = [
+  { label: "Build", items: buildServices },
+  { label: "Enterprise platforms", items: enterpriseServices },
+];
 
 const linkCls =
   "font-pixel text-[11px] uppercase tracking-wider text-bone/85 transition-colors hover:text-signal";
@@ -79,21 +84,24 @@ export function Nav() {
             </button>
             <div
               id="services-menu"
-              className={`absolute left-0 top-full w-[420px] border border-line bg-coal/95 p-2 shadow-[0_24px_60px_rgb(0_0_0/0.55)] backdrop-blur-md transition-all duration-200 ${
+              className={`absolute left-0 top-full grid w-[720px] grid-cols-2 gap-2 border border-line bg-coal/95 p-3 shadow-[0_24px_60px_rgb(0_0_0/0.55)] backdrop-blur-md transition-all duration-200 ${
                 open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-1 opacity-0"
               }`}
             >
-              {services.map((s) => (
-                <Link
-                  key={s.slug}
-                  href={`/service/${s.slug}/`}
-                  className="group block px-4 py-3 transition-colors hover:bg-slate focus-visible:bg-slate"
-                >
-                  <span className="font-pixel text-[11px] uppercase tracking-wider text-bone group-hover:text-signal">
-                    {s.name}
-                  </span>
-                  <span className="mt-1 block text-sm text-fog">{s.short}</span>
-                </Link>
+              {groups.map((g) => (
+                <div key={g.label}>
+                  <p className="px-4 pb-1 pt-2 font-pixel text-[10px] uppercase tracking-[0.18em] text-dim">{g.label}</p>
+                  {g.items.map((s) => (
+                    <Link
+                      key={s.slug}
+                      href={`/service/${s.slug}/`}
+                      className="group block px-4 py-3 transition-colors hover:bg-slate focus-visible:bg-slate"
+                    >
+                      <span className="text-[15px] font-medium text-bone group-hover:text-signal">{s.name}</span>
+                      <span className="mt-1 block text-sm leading-snug text-fog">{s.short}</span>
+                    </Link>
+                  ))}
+                </div>
               ))}
             </div>
           </div>
@@ -137,16 +145,20 @@ export function Nav() {
           menu ? "block" : "hidden"
         }`}
       >
-        <p className="font-pixel text-[10px] uppercase tracking-[0.18em] text-dim">Services</p>
-        <ul className="mt-3 grid gap-1">
-          {services.map((s) => (
-            <li key={s.slug}>
-              <Link href={`/service/${s.slug}/`} className="block py-2 text-lg text-bone">
-                {s.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {groups.map((g) => (
+          <div key={g.label} className="mb-4">
+            <p className="font-pixel text-[10px] uppercase tracking-[0.18em] text-dim">{g.label}</p>
+            <ul className="mt-2 grid gap-0.5">
+              {g.items.map((s) => (
+                <li key={s.slug}>
+                  <Link href={`/service/${s.slug}/`} className="block py-1.5 text-lg text-bone">
+                    {s.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
         <div className="dash my-5" />
         <ul className="grid gap-1">
           {nav.map((item) => (

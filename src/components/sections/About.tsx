@@ -3,11 +3,11 @@ import { industries, stats } from "@/content/site";
 import { Button, Container, Divider } from "../ui";
 import { Reveal } from "../Reveal";
 
-export function About() {
+export function About({ index = 7 }: { index?: number }) {
   return (
     <section id="about" className="relative py-24 lg:py-32">
       <Container>
-        <Divider index={6} title="About Parco" />
+        <Divider index={index} title="About Parco" />
 
         <div className="mt-14 grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
           <Reveal className="relative">
@@ -33,9 +33,8 @@ export function About() {
               A technology partner for the long run
             </h2>
             <p className="mt-6 max-w-[58ch] text-lg leading-relaxed text-fog">
-              Parco Solutions is an IT services and software development company. We combine technical depth, industry
-              knowledge and a customer-first approach to deliver scalable, secure systems for startups and large
-              enterprises alike.
+              Parco Solutions is an IT solutions company. We build custom software, management systems and websites for
+              practices, hospitals, schools and growing businesses, then host, support and improve them.
             </p>
 
             <dl className="mt-10 grid grid-cols-3 gap-px border border-line bg-line">

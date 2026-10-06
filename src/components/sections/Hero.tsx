@@ -6,10 +6,10 @@ import { Reveal } from "../Reveal";
 import { stats } from "@/content/site";
 
 const modules = [
-  { title: "Enterprise and SAP", line: "Implement, upgrade, roll out", href: "/service/sap/" },
-  { title: "Ocean ERP", line: "Finance to HR, one system", href: "/service/oceanerp/" },
-  { title: "Web and apps", line: "Sites and systems that ship", href: "/service/web-development/" },
-  { title: "Fleet tracking", line: "Every vehicle, live", href: "/service/vts/" },
+  { title: "Custom software", line: "Built to your process", href: "/service/custom-software/" },
+  { title: "Management systems", line: "Every record in one place", href: "/service/management-systems/" },
+  { title: "Websites", line: "Designed, built and hosted", href: "/service/web-development/" },
+  { title: "IT solutions", line: "Cloud, AI and data", href: "/solutions/" },
 ];
 
 function Module({ title, line, href, side }: (typeof modules)[number] & { side: "left" | "right" }) {
@@ -18,7 +18,7 @@ function Module({ title, line, href, side }: (typeof modules)[number] & { side: 
       href={href}
       className="group relative block border border-signal/25 bg-signal/[0.03] px-5 pb-4 pt-6 transition-colors hover:border-signal/60 hover:bg-signal/[0.07]"
     >
-      <span className="absolute -top-2.5 left-3 bg-[#0a0c0b] px-2 font-pixel text-[11px] uppercase tracking-wider text-signal">
+      <span className="absolute -top-2.5 left-3 bg-[#05070b] px-2 font-pixel text-[11px] uppercase tracking-wider text-signal">
         {title}
       </span>
       <span className="block font-pixel text-[10px] uppercase tracking-wider text-signal/60">{line}</span>
@@ -49,16 +49,25 @@ export function Hero() {
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[1100px] bg-[radial-gradient(ellipse_at_50%_20%,transparent_30%,var(--color-ink)_75%)]"
       />
+      {/* Blue/cyan light pool behind the headline */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-24 h-[520px] w-[900px] max-w-full -translate-x-1/2 bg-[radial-gradient(ellipse_at_center,rgb(37_99_235/0.22),rgb(34_211_238/0.06)_45%,transparent_70%)]"
+      />
 
       <Container className="relative text-center">
         <Reveal>
-          <h1 className="display-shadow mx-auto max-w-[21ch] text-balance font-display text-[2.7rem] font-medium leading-[1.02] tracking-tight text-bone sm:text-6xl lg:text-[5.25rem]">
-            Enterprise software, built around how you work
+          <p className="mx-auto mb-7 inline-flex items-center gap-2.5 border border-signal/30 bg-signal/[0.06] px-3.5 py-1.5 font-pixel text-[11px] uppercase tracking-[0.16em] text-signal-hi">
+            <span className="gem scale-75" />
+            IT solutions company
+          </p>
+          <h1 className="display-shadow mx-auto max-w-[20ch] text-balance font-display text-[2.6rem] leading-[1.04] text-bone sm:text-6xl lg:text-[4.9rem]">
+            Custom software and websites, <span className="text-grad">built for your business</span>
           </h1>
         </Reveal>
         <Reveal delay={0.1}>
           <p className="mx-auto mt-7 max-w-[54ch] text-lg leading-relaxed text-fog sm:text-xl">
-            Parco Solutions designs, builds and supports ERP, SAP, web and fleet tracking systems for growing businesses.
+            We build management systems, custom applications and websites around the way your team actually works.
           </p>
         </Reveal>
         <Reveal delay={0.2} className="mt-9 flex flex-wrap items-center justify-center gap-3">
@@ -75,7 +84,7 @@ export function Hero() {
           <div className="bezel notch p-3 sm:p-5 lg:p-7">
             <div className="screen p-4 sm:p-6 lg:p-8">
               <div className="flex flex-col gap-4 border-b border-signal/20 pb-4 sm:flex-row sm:items-center sm:justify-between">
-                <p className="font-pixel text-sm uppercase tracking-[0.2em] text-signal sm:text-base">Parco console</p>
+                <p className="font-pixel text-sm uppercase tracking-[0.2em] text-signal sm:text-base">What we build</p>
                 <ul className="flex flex-wrap gap-2">
                   {stats.map((s) => (
                     <li
@@ -114,7 +123,7 @@ export function Hero() {
 
             {/* Nameplate */}
             <div className="mt-4 flex items-center gap-4 sm:mt-6 sm:gap-6">
-              <div className="notch bg-[#151917] px-4 py-2.5 shadow-[inset_0_2px_0_rgb(0_0_0/0.6),inset_0_-1px_0_rgb(255_255_255/0.08)] sm:px-6 sm:py-3">
+              <div className="notch bg-[#0f141c] px-4 py-2.5 shadow-[inset_0_2px_0_rgb(0_0_0/0.6),inset_0_-1px_0_rgb(255_255_255/0.08)] sm:px-6 sm:py-3">
                 <span className="display-shadow font-pixel text-base tracking-[0.2em] text-bone/90 sm:text-2xl">
                   PARCO SOLUTIONS
                 </span>
@@ -124,7 +133,7 @@ export function Hero() {
                 <span className="h-1 w-40 bg-black/50" />
               </div>
               <div aria-hidden className="ml-auto hidden h-8 w-32 items-end bg-black/50 p-1 sm:flex">
-                <span className="h-2 w-full bg-signal/70 shadow-[0_0_10px_rgb(150_201_61/0.5)]" />
+                <span className="h-2 w-full bg-signal/70 shadow-[0_0_10px_rgb(56_189_248/0.5)]" />
               </div>
             </div>
           </div>

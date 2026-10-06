@@ -10,7 +10,16 @@ const WP_URL = (process.env.NEXT_PUBLIC_WP_URL ?? "https://parcosolutions.in").r
 const FORM_ID = process.env.NEXT_PUBLIC_CF7_FORM_ID ?? "1253";
 const ENDPOINT = `${WP_URL}/wp-json/contact-form-7/v1/contact-forms/${FORM_ID}/feedback`;
 
-const TOPICS = ["SAP or ERP", "Ocean ERP", "Website or app", "Vehicle tracking", "Cloud, AI or data", "Something else"];
+const TOPICS = [
+  "Custom software",
+  "Management system",
+  "Website",
+  "Mobile app",
+  "Cloud, AI or data",
+  "SAP, ERP or Ocean ERP",
+  "Vehicle tracking",
+  "Something else",
+];
 
 type Status = "idle" | "sending" | "sent" | "error";
 type CF7Response = {

@@ -1,31 +1,40 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/* Tokens. Dark-only by design: the "lit console" look depends on it.  */
-/* Accent is the Parco brand lime (#96c93d) taken from the logo.       */
+/* Tokens. Dark-only by design: near-black base with a blue-to-cyan     */
+/* accent gradient (cyan picks up the teal in the Parco logo).          */
 /* ------------------------------------------------------------------ */
 @theme {
-  --color-ink: #0b0d0c;
-  --color-coal: #121514;
-  --color-slate: #191d1b;
-  --color-ash: #2b312e;
-  --color-line: rgb(233 236 230 / 0.1);
-  --color-bone: #e9ece6;
-  --color-fog: #a4aba3;
-  --color-dim: #7c847d;
-  --color-signal: #96c93d;
-  --color-signal-hi: #c4e88a;
-  --color-signal-lo: #4d7317;
-  --color-teal: #2b8aa3;
+  --color-ink: #06080c;
+  --color-coal: #0c1017;
+  --color-slate: #131a24;
+  --color-ash: #253042;
+  --color-line: rgb(214 226 255 / 0.1);
+  --color-bone: #e8eef7;
+  --color-fog: #9aa7ba;
+  --color-dim: #6c7a8f;
+  /* "signal" = accent for text, icons and borders (cyan-sky) */
+  --color-signal: #38bdf8;
+  --color-signal-hi: #a5e4ff;
+  --color-signal-lo: #1d4ed8;
+  --color-violet: #6366f1;
 
-  --font-display: var(--font-garamond), "Georgia", serif;
+  --font-display: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
-  --font-pixel: var(--font-silkscreen), ui-monospace, monospace;
+  /* kept as "pixel" so existing utility names keep working; now a code mono */
+  --font-pixel: var(--font-code), ui-monospace, monospace;
 
   --radius-none: 0;
 
-  --animate-flicker: flicker 3.4s steps(1, end) infinite;
+  --animate-flicker: pulse-led 2.8s ease-in-out infinite;
   --animate-marquee: marquee 38s linear infinite;
+}
+
+:root {
+  /* Decorative gradient: lines, glows, text highlights */
+  --grad-accent: linear-gradient(110deg, #3b82f6 0%, #22d3ee 100%);
+  /* Button gradient: darker stops so white labels pass WCAG AA */
+  --grad-button: linear-gradient(110deg, #1d4ed8 0%, #2563eb 45%, #0e7490 100%);
 }
 
 @layer base {
@@ -58,21 +67,32 @@
     inset: 0;
     z-index: 60;
     pointer-events: none;
-    opacity: 0.07;
+    opacity: 0.05;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
 
-  /* Drifting smoke behind content sections. */
+  /* Haze behind content sections, with soft blue/cyan light pools. */
   .smoke {
-    background-image: url("/images/smoke.png"), radial-gradient(ellipse at 20% 0%, rgb(150 201 61 / 0.05), transparent 55%);
-    background-size: 512px 512px, 100% 100%;
+    background-image:
+      url("/images/smoke.png"),
+      radial-gradient(ellipse 60% 50% at 15% 0%, rgb(37 99 235 / 0.1), transparent 70%),
+      radial-gradient(ellipse 50% 40% at 90% 100%, rgb(34 211 238 / 0.06), transparent 70%);
+    background-size: 512px 512px, 100% 100%, 100% 100%;
   }
 
-  /* ------------------------------------------------------------------ */
-  /* Pixel primitives                                                    */
-  /* ------------------------------------------------------------------ */
+  .text-grad {
+    background: var(--grad-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-  /* Stepped 4px corners, like a sprite. */
+  .grad-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #3b82f6 25%, #22d3ee 75%, transparent);
+  }
+
+  /* Stepped 4px corners. */
   .notch {
     clip-path: polygon(
       0 4px, 4px 4px, 4px 0, calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
@@ -89,40 +109,44 @@
     white-space: nowrap;
     font-family: var(--font-pixel);
     font-size: 0.75rem;
-    letter-spacing: 0.04em;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 0.85rem 1.25rem 0.95rem;
-    transition: transform 0.15s ease, filter 0.2s ease;
+    padding: 0.85rem 1.3rem 0.9rem;
+    transition: transform 0.15s ease, filter 0.2s ease, background-color 0.2s ease;
   }
   .btn-pixel:active {
     transform: translateY(1px);
   }
   .btn-primary {
-    background: var(--color-signal);
-    color: var(--color-ink);
+    background: var(--grad-button);
+    color: #fff;
     box-shadow:
-      inset 0 3px 0 rgb(255 255 255 / 0.35),
-      inset 0 -4px 0 rgb(0 0 0 / 0.28);
+      inset 0 1px 0 rgb(255 255 255 / 0.3),
+      inset 0 -3px 0 rgb(0 0 0 / 0.25);
   }
   .btn-primary:hover {
-    filter: brightness(1.08);
+    filter: brightness(1.15) saturate(1.1);
   }
   .btn-ghost {
     color: var(--color-bone);
-    background: rgb(233 236 230 / 0.04);
+    background: rgb(214 226 255 / 0.04);
     box-shadow:
       inset 0 0 0 1px var(--color-ash),
       inset 0 -3px 0 rgb(0 0 0 / 0.35);
   }
   .btn-ghost:hover {
-    background: rgb(233 236 230 / 0.08);
+    background: rgb(56 189 248 / 0.08);
+    box-shadow:
+      inset 0 0 0 1px rgb(56 189 248 / 0.45),
+      inset 0 -3px 0 rgb(0 0 0 / 0.35);
   }
 
   /* Riveted frame (rows of rivets along the top and bottom edges). */
   .frame {
     position: relative;
     border: 1px solid var(--color-line);
-    background: rgb(18 21 20 / 0.55);
+    background: rgb(12 16 23 / 0.6);
   }
   .frame::before,
   .frame::after {
@@ -131,7 +155,7 @@
     left: 20px;
     right: 20px;
     height: 6px;
-    background: radial-gradient(circle, #59615c 1.6px, transparent 2.2px) 0 0 / 36px 6px repeat-x;
+    background: radial-gradient(circle, #3a4a63 1.6px, transparent 2.2px) 0 0 / 36px 6px repeat-x;
     pointer-events: none;
   }
   .frame::before {
@@ -146,12 +170,13 @@
     position: relative;
   }
   .brackets::after {
-    --c: rgb(233 236 230 / 0.75);
+    --c: rgb(165 228 255 / 0.8);
     --l: 18px;
     --w: 2px;
     content: "";
     position: absolute;
     inset: 12px;
+    z-index: 2;
     pointer-events: none;
     background:
       linear-gradient(var(--c), var(--c)) top left / var(--l) var(--w),
@@ -165,7 +190,7 @@
     background-repeat: no-repeat;
   }
 
-  /* Duotone photo treatment: monochrome base tinted with the brand lime. */
+  /* Duotone photo treatment: monochrome base tinted with the accent gradient. */
   .duo {
     position: relative;
     overflow: hidden;
@@ -173,7 +198,7 @@
     isolation: isolate;
   }
   .duo img {
-    filter: grayscale(1) contrast(1.15) brightness(0.58);
+    filter: grayscale(1) contrast(1.15) brightness(0.6);
     transition: filter 0.7s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .duo::before {
@@ -181,9 +206,9 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: var(--color-signal);
+    background: linear-gradient(135deg, #2563eb, #22d3ee);
     mix-blend-mode: color;
-    opacity: 0.32;
+    opacity: 0.55;
     pointer-events: none;
     transition: opacity 0.7s ease;
   }
@@ -200,89 +225,94 @@
   /* Dashed rule used by section dividers. */
   .dash {
     height: 1px;
-    background: repeating-linear-gradient(90deg, #3a413d 0 6px, transparent 6px 13px);
+    background: repeating-linear-gradient(90deg, #2c3a50 0 6px, transparent 6px 13px);
   }
 
-  /* Lamp: small brazier with a flickering signal-green flame. */
+  /* Lamp: a mounted status LED with a soft pulse. */
   .lamp {
     position: relative;
     display: inline-block;
     width: 14px;
-    height: 26px;
+    height: 22px;
     flex: none;
   }
   .lamp::before {
-    /* flame */
+    /* LED */
     content: "";
     position: absolute;
     left: 3px;
-    bottom: 7px;
+    top: 2px;
     width: 8px;
-    height: 14px;
-    background: linear-gradient(to top, var(--color-signal) 0%, var(--color-signal-hi) 55%, #f4ffe0 100%);
-    clip-path: polygon(50% 0, 100% 45%, 85% 100%, 15% 100%, 0 45%);
-    box-shadow: 0 0 0 0 transparent;
-    filter: drop-shadow(0 0 6px rgb(150 201 61 / 0.9));
+    height: 8px;
+    background: radial-gradient(circle at 35% 35%, #ffffff, #7dd3fc 40%, #2563eb 100%);
+    box-shadow:
+      0 0 8px 2px rgb(56 189 248 / 0.75),
+      0 0 22px 6px rgb(37 99 235 / 0.35);
     animation: var(--animate-flicker);
-    transform-origin: 50% 100%;
   }
   .lamp::after {
-    /* bowl */
+    /* mount */
     content: "";
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    height: 7px;
-    border: 2px solid #59615c;
+    height: 9px;
+    border: 2px solid #33415a;
     border-top: 0;
-    background: #1d221f;
+    background: #0f141c;
   }
   .lamp-glow {
     position: absolute;
     left: 50%;
-    bottom: 6px;
-    width: 64px;
-    height: 64px;
-    translate: -50% 30%;
-    background: radial-gradient(circle, rgb(150 201 61 / 0.22), transparent 65%);
+    top: 6px;
+    width: 70px;
+    height: 70px;
+    translate: -50% -50%;
+    background: radial-gradient(circle, rgb(56 189 248 / 0.18), transparent 65%);
     pointer-events: none;
   }
 
   .gem {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
     flex: none;
-    background: radial-gradient(circle at 35% 35%, #f4ffe0, var(--color-signal) 45%, var(--color-signal-lo) 80%);
-    box-shadow: 0 0 10px rgb(150 201 61 / 0.55);
+    rotate: 45deg;
+    background: var(--grad-accent);
+    box-shadow: 0 0 10px rgb(56 189 248 / 0.6);
   }
 
   /* Bevelled console bezel used by the hero. */
   .bezel {
     background:
       url("/images/smoke.png") 0 0 / 256px 256px,
-      linear-gradient(180deg, #2d3330, #1e2320 40%, #191d1b);
+      linear-gradient(180deg, #222b38, #171e29 40%, #11161f);
     box-shadow:
-      inset 0 2px 0 rgb(255 255 255 / 0.12),
+      inset 0 1px 0 rgb(255 255 255 / 0.14),
       inset 0 -3px 0 rgb(0 0 0 / 0.5),
       inset 3px 0 0 rgb(255 255 255 / 0.04),
       inset -3px 0 0 rgb(0 0 0 / 0.3),
-      0 40px 120px rgb(0 0 0 / 0.6);
+      0 40px 120px rgb(0 0 0 / 0.6),
+      0 0 120px rgb(37 99 235 / 0.12);
   }
   .screen {
     background:
-      radial-gradient(ellipse at 50% 40%, rgb(150 201 61 / 0.1), transparent 60%),
-      repeating-linear-gradient(0deg, rgb(255 255 255 / 0.025) 0 1px, transparent 1px 3px),
-      #0a0c0b;
+      radial-gradient(ellipse at 50% 40%, rgb(37 99 235 / 0.16), transparent 60%),
+      repeating-linear-gradient(0deg, rgb(255 255 255 / 0.022) 0 1px, transparent 1px 3px),
+      #05070b;
     box-shadow:
-      inset 0 0 0 1px rgb(150 201 61 / 0.12),
+      inset 0 0 0 1px rgb(56 189 248 / 0.16),
       inset 0 0 80px rgb(0 0 0 / 0.8);
   }
 
-  /* Headline with a hard pixel drop shadow, echoing a bitmap render. */
+  .font-display {
+    font-weight: 500;
+    letter-spacing: -0.03em;
+  }
+
   .display-shadow {
-    text-shadow: 3px 3px 0 rgb(0 0 0 / 0.65);
+    text-shadow: 0 2px 30px rgb(0 0 0 / 0.55);
   }
 
   .mask-sides {
@@ -301,15 +331,16 @@
   .prose-wp h2,
   .prose-wp h3 {
     font-family: var(--font-display);
+    font-weight: 600;
     color: var(--color-bone);
     line-height: 1.2;
     margin-top: 2em;
   }
   .prose-wp h2 {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
   }
   .prose-wp h3 {
-    font-size: 1.45rem;
+    font-size: 1.35rem;
   }
   .prose-wp a {
     color: var(--color-signal);
@@ -335,18 +366,23 @@
   }
 }
 
-@keyframes flicker {
-  0% { transform: scale(1, 1); opacity: 1; }
-  18% { transform: scale(0.92, 1.06); opacity: 0.9; }
-  36% { transform: scale(1.04, 0.94); opacity: 1; }
-  54% { transform: scale(0.96, 1.08); opacity: 0.85; }
-  72% { transform: scale(1, 0.97); opacity: 1; }
-  90% { transform: scale(1.05, 1.03); opacity: 0.92; }
+@keyframes pulse-led {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
