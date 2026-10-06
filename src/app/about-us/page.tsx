@@ -6,6 +6,7 @@ import { Work } from "@/components/sections/Work";
 import { Contact } from "@/components/sections/Contact";
 import { Button, Container, Divider, Figure } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -23,7 +24,7 @@ export default function AboutPage() {
         lead="An IT solutions company building custom software, management systems and websites around the way our clients actually work."
         aside={
           <Figure
-            src="/images/about-team.webp"
+            src={asset("/images/about-team.webp")}
             alt="Developers collaborating around a table with laptops"
             caption="The team behind every build"
             index={1}

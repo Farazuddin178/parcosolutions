@@ -74,7 +74,7 @@
   /* Haze behind content sections, with soft blue/cyan light pools. */
   .smoke {
     background-image:
-      url("/images/smoke.png"),
+      var(--smoke-img),
       radial-gradient(ellipse 60% 50% at 15% 0%, rgb(0 200 100 / 0.1), transparent 70%),
       radial-gradient(ellipse 50% 40% at 90% 100%, rgb(198 255 61 / 0.06), transparent 70%);
     background-size: 512px 512px, 100% 100%, 100% 100%;
@@ -287,7 +287,7 @@
   /* Bevelled console bezel used by the hero. */
   .bezel {
     background:
-      url("/images/smoke.png") 0 0 / 256px 256px,
+      var(--smoke-img) 0 0 / 256px 256px,
       linear-gradient(180deg, #16231b, #0f1913 40%, #0a120d);
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.14),

@@ -4,6 +4,7 @@ import { systemTypes } from "@/content/site";
 import { IconTile } from "../Icon";
 import { Button, Container, Divider, Figure, SectionIntro } from "../ui";
 import { Reveal } from "../Reveal";
+import { asset } from "@/lib/asset";
 
 export function Systems() {
   return (
@@ -19,7 +20,7 @@ export function Systems() {
               body="Every record, task and document for your operation in one secure place, organised the way your team already works."
             />
             <Figure
-              src="/images/svc-management.webp"
+              src={asset("/images/svc-management.webp")}
               alt="Hand arranging workflow cards on a whiteboard process map"
               caption="Mapped to your process first"
               index={1}

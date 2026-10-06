@@ -4,6 +4,7 @@
 // live WordPress service pages. The theme's "service" post type
 // is not exposed to the WordPress REST API, so services live here; blog posts
 // and the contact form go through WordPress (see src/lib/wordpress.ts).
+import { asset } from "@/lib/asset";
 
 export type IconKey =
   | "buildings"
@@ -145,7 +146,7 @@ export const services: Service[] = [
     summary:
       "Off-the-shelf tools force your team to work their way. We build applications around how your business actually runs: your processes, your rules, your reports.",
     icon: "code",
-    image: "/images/svc-custom.webp",
+    image: asset("/images/svc-custom.webp"),
     imageAlt: "Developer working at a desk with three bright monitors, seen from above",
     figure: "Built to your process",
     sections: [
@@ -179,7 +180,7 @@ export const services: Service[] = [
     summary:
       "A management system keeps every record, task and document for your operation in one secure place. We build them to match your exact workflow, from a law practice to a hospital.",
     icon: "kanban",
-    image: "/images/svc-management.webp",
+    image: asset("/images/svc-management.webp"),
     imageAlt: "Hand arranging workflow cards on a whiteboard process map",
     figure: "Every record in one place",
     sections: [
@@ -217,7 +218,7 @@ export const services: Service[] = [
     summary:
       "Your website is often the first conversation a client has with you. We design and build fast, professional sites that are easy to update, then keep them secure and running.",
     icon: "browser",
-    image: "/images/svc-web.webp",
+    image: asset("/images/svc-web.webp"),
     imageAlt: "Code editor open on a laptop in a dark room",
     figure: "Designed, built and hosted in-house",
     sections: [
@@ -251,7 +252,7 @@ export const services: Service[] = [
     summary:
       "Give staff and customers the same system in their pocket. We build mobile apps that share data with your web software, so everything stays in sync.",
     icon: "phone",
-    image: "/images/svc-mobile.webp",
+    image: asset("/images/svc-mobile.webp"),
     imageAlt: "Person holding a smartphone beside an open laptop",
     figure: "Your system, in every pocket",
     sections: [
@@ -274,7 +275,7 @@ export const services: Service[] = [
     summary:
       "Ocean ERP is our integrated ERP for emerging and growing businesses. It brings company data and processes into a single system and database, with real-time control from finance through to quality management.",
     icon: "chart",
-    image: "/images/svc-oceanerp.webp",
+    image: asset("/images/svc-oceanerp.webp"),
     imageAlt: "Analytics dashboard with line and histogram charts on a laptop screen",
     figure: "Finance to HR, one database",
     sections: [
@@ -323,7 +324,7 @@ export const services: Service[] = [
     summary:
       "An independent, technology-agnostic approach to choosing and implementing ERP, so you avoid vendor lock-in and keep time, cost and risk under control.",
     icon: "gear",
-    image: "/images/svc-erp.webp",
+    image: asset("/images/svc-erp.webp"),
     imageAlt: "Engineer working at a laptop beside automated manufacturing equipment",
     figure: "Phased, controlled rollouts",
     sections: [
@@ -365,7 +366,7 @@ export const solutions: {
     id: "cloud",
     name: "Cloud",
     body: "Build secure, scalable and cost-effective applications on cloud infrastructure, and move existing workloads without downtime surprises.",
-    image: "/images/sol-cloud.webp",
+    image: asset("/images/sol-cloud.webp"),
     imageAlt: "Night-time satellite view of city lights across a continent",
     icon: "cloud",
     items: [
@@ -382,7 +383,7 @@ export const solutions: {
     id: "ai",
     name: "AI and automation",
     body: "Automate repetitive work, extract information from documents and make decisions on data instead of instinct.",
-    image: "/images/sol-ai.webp",
+    image: asset("/images/sol-ai.webp"),
     imageAlt: "A half-open laptop glowing in a dark room",
     icon: "brain",
     items: [
@@ -398,7 +399,7 @@ export const solutions: {
     id: "data",
     name: "Data and analytics",
     body: "Turn the data your systems already collect into dashboards and reports that leadership reads every week.",
-    image: "/images/sol-data.webp",
+    image: asset("/images/sol-data.webp"),
     imageAlt: "Laptop showing business charts and a ring chart on a desk",
     icon: "chart",
     items: [
@@ -446,9 +447,9 @@ export const work: CaseStudy[] = [
       "Case Management System for matters, hearings and client records",
       "Designed, built and supported by Parco end to end",
     ],
-    image: "/images/work-advocate.webp",
+    image: asset("/images/work-advocate.webp"),
     imageAlt: "Bronze statue of Lady Justice holding scales",
-    detailImage: "/images/work-advocate-cms.webp",
+    detailImage: asset("/images/work-advocate-cms.webp"),
     detailAlt: "Library shelves of bound law volumes",
   },
   {
@@ -464,9 +465,9 @@ export const work: CaseStudy[] = [
       "Clear contact and enquiry routes for patients",
       "Responsive build tuned for mobile visitors",
     ],
-    image: "/images/work-hospital.webp",
+    image: asset("/images/work-hospital.webp"),
     imageAlt: "Modern hospital building with a covered entrance",
-    detailImage: "/images/work-hospital-interior.webp",
+    detailImage: asset("/images/work-hospital-interior.webp"),
     detailAlt: "Bright hospital reception and waiting area",
   },
 ];

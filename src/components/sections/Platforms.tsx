@@ -4,6 +4,7 @@ import { enterpriseServices } from "@/content/site";
 import { IconTile } from "../Icon";
 import { Container, Divider, Figure } from "../ui";
 import { Reveal } from "../Reveal";
+import { asset } from "@/lib/asset";
 
 export function Platforms({ index = 6 }: { index?: number }) {
   return (
@@ -20,7 +21,7 @@ export function Platforms({ index = 6 }: { index?: number }) {
               affordable system for finance, inventory, sales and HR.
             </p>
             <Figure
-              src="/images/it-infra.webp"
+              src={asset("/images/it-infra.webp")}
               alt="Engineer with a laptop walking past illuminated server racks"
               ratio="aspect-[16/10]"
               className="mt-10"

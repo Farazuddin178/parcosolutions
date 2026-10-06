@@ -1,4 +1,5 @@
 import { Button, Container, Lamp } from "@/components/ui";
+import { asset } from "@/lib/asset";
 
 export default function NotFound() {
   return (
@@ -6,7 +7,7 @@ export default function NotFound() {
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 bg-cover bg-center opacity-20 [mask-image:radial-gradient(circle,#000_20%,transparent_70%)]"
-        style={{ backgroundImage: "url(/images/dither-circuit.png)" }}
+        style={{ backgroundImage: `url(${asset("/images/dither-circuit.png")})` }}
       />
       <Container className="relative text-center">
         <div className="flex justify-center gap-6">

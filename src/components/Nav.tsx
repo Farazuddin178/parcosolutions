@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { CaretDown, List, X } from "@phosphor-icons/react";
 import { buildServices, enterpriseServices, nav, site } from "@/content/site";
+import { asset } from "@/lib/asset";
 
 const groups = [
   { label: "Build", items: buildServices },
@@ -18,7 +19,7 @@ const linkCls =
 function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <Link href="/" className="flex items-center gap-2.5" aria-label={`${site.name} home`}>
-      <Image src="/parco-mark.png" alt="" width={210} height={271} className="h-8 w-auto" priority />
+      <Image src={asset("/parco-mark.png")} alt="" width={210} height={271} className="h-8 w-auto" priority />
       <span className={`font-pixel text-[11px] uppercase tracking-[0.14em] text-bone ${compact ? "" : "hidden xl:inline"}`}>
         Parco Solutions
       </span>
