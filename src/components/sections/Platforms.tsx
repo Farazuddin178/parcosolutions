@@ -9,15 +9,15 @@ export function Platforms({ index = 6 }: { index?: number }) {
   return (
     <section id="platforms" className="relative py-24 lg:py-32">
       <Container>
-        <Divider index={index} title="Enterprise platforms" />
+        <Divider index={index} title="ERP" />
         <div className="mt-14 grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
             <h2 className="display-shadow font-display text-4xl leading-[1.05] text-bone sm:text-5xl">
-              Enterprise platforms and our own products
+              ERP and our own Ocean ERP
             </h2>
             <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-fog">
-              Alongside custom builds, we implement and support SAP and ERP, and offer our own Ocean ERP and Vehicle
-              Tracking System.
+              Alongside custom builds, we help businesses choose and roll out ERP, and offer Ocean ERP, our own
+              affordable system for finance, inventory, sales and HR.
             </p>
             <Figure
               src="/images/it-infra.webp"

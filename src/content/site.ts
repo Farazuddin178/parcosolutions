@@ -1,7 +1,7 @@
 // Structured marketing content.
 // Positioning: an IT solutions company that builds custom software,
-// management systems and websites. Enterprise copy (SAP / Ocean ERP / ERP /
-// VTS) is taken from the live WordPress service pages. The theme's "service" post type
+// management systems and websites. ERP and Ocean ERP copy is taken from the
+// live WordPress service pages. The theme's "service" post type
 // is not exposed to the WordPress REST API, so services live here; blog posts
 // and the contact form go through WordPress (see src/lib/wordpress.ts).
 
@@ -46,12 +46,6 @@ export const site = {
   mapsHref:
     "https://www.google.com/maps/search/?api=1&query=Gumedelli+Commercial+Complex+Begumpet+Hyderabad",
 };
-
-export const stats = [
-  { value: "5+", label: "Years consulting" },
-  { value: "50+", label: "Clients served" },
-  { value: "24/7", label: "Support desk" },
-];
 
 export const nav = [
   { label: "Solutions", href: "/solutions/" },
@@ -273,46 +267,6 @@ export const services: Service[] = [
     ],
   },
   {
-    slug: "sap",
-    group: "enterprise",
-    name: "SAP Services",
-    short: "Implement, upgrade and roll out SAP with certified consultants.",
-    summary:
-      "We help organisations get real value from SAP: optimising what is already configured, removing inefficiencies, and turning operational data into reporting people actually use.",
-    icon: "database",
-    image: "/images/svc-sap.webp",
-    imageAlt: "Rows of networked server racks with patch cables",
-    figure: "Implementation, support and rollouts",
-    sections: [
-      {
-        title: "What we deliver",
-        items: [
-          { title: "Implementation", body: "Blueprint to go-live, with packaged methodologies that cut time and risk." },
-          { title: "Support and upgrades", body: "Keep your landscape current without disrupting daily operations." },
-          { title: "Templates and rollouts", body: "Roll a proven template out to new plants, entities and regions." },
-          { title: "Custom development", body: "Reports, forms and extensions where standard SAP stops short." },
-        ],
-      },
-      {
-        title: "Inside an implementation",
-        items: [
-          { title: "Project planning and programme management" },
-          { title: "System design and business blueprint" },
-          { title: "Business process redesign and definition" },
-          { title: "Gap analysis against industry pre-configurations" },
-          { title: "Organisational change management" },
-          { title: "End-user SAP training" },
-          { title: "Form and report definition" },
-          { title: "Data migration strategy and mapping" },
-          { title: "Technical infrastructure upgrades" },
-          { title: "NetWeaver and systems integration" },
-        ],
-      },
-    ],
-    useCases: ["FICO", "SD", "MM", "PP", "CRM", "NetWeaver"],
-    useCasesLabel: "Module expertise",
-  },
-  {
     slug: "oceanerp",
     group: "enterprise",
     name: "Ocean ERP",
@@ -385,52 +339,8 @@ export const services: Service[] = [
         ],
       },
     ],
-    useCases: ["SAP", "Microsoft Dynamics", "Ocean ERP"],
+    useCases: ["Ocean ERP", "Microsoft Dynamics"],
     useCasesLabel: "Platforms",
-  },
-  {
-    slug: "vts",
-    group: "enterprise",
-    name: "Vehicle Tracking System",
-    short: "GPS/GPRS fleet tracking with live location, geofencing and trip reports.",
-    summary:
-      "Our GPS/GPRS Vehicle Tracking System records vehicle positions at regular intervals and reports over GPRS or SMS, giving schools, fleet operators, taxi services and security teams one central view of every vehicle.",
-    icon: "truck",
-    image: "/images/svc-vts-fleet.webp",
-    imageAlt: "Aerial view of a container port with trucks and cranes",
-    figure: "Live location across the fleet",
-    sections: [
-      {
-        title: "Key features",
-        items: [
-          { title: "Live location", body: "Positions from GPS satellites, delivered over GPRS." },
-          { title: "Geofencing and alerts", body: "Get notified when a vehicle enters or leaves a zone." },
-          { title: "SMS location queries", body: "Ask a unit for its position by SMS, even without the app." },
-          { title: "Offline storage", body: "Positions are stored on the device when GPRS drops, then synced." },
-          { title: "Accurate data export", body: "Export trips and history for billing and audits." },
-          { title: "Central dashboard", body: "One database and interface for the whole fleet." },
-        ],
-      },
-    ],
-    specs: [
-      { label: "Processor", value: "ARM Cortex-M3, 32-bit" },
-      { label: "Memory", value: "16 MB flash, 512 KB SRAM" },
-      { label: "Communication", value: "GPRS, USB" },
-      { label: "I/O ports", value: "3 digital in, 2 digital out, 1 analog in" },
-      { label: "Antennas", value: "External GPRS and GPS" },
-      { label: "Ignition", value: "Status detection and control" },
-      { label: "Battery", value: "Li-ion 3.7 V, 1.1 Ah, about 4 hours" },
-      { label: "Size and weight", value: "110 x 85 x 25 mm, about 250 g" },
-      { label: "Warranty", value: "1 year, SDK and demo software included" },
-    ],
-    useCases: [
-      "School and college buses",
-      "Fleet management",
-      "Taxi fare and trip calculation",
-      "Security and asset tracking",
-      "Trip distance and mileage",
-    ],
-    useCasesLabel: "Where it is used",
   },
 ];
 

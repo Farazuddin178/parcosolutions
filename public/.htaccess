@@ -14,6 +14,8 @@ DirectoryIndex index.html
   # Retired WordPress pages -> closest page on the new site (keeps search traffic)
   RewriteRule ^service/(web-design|ui-ux-design|graphic-design-2)/?$ /service/web-development/ [R=301,L]
   RewriteRule ^service/(digital-marketing|email-marketing)/?$ /solutions/ [R=301,L]
+  RewriteRule ^service/sap/?$ /service/erp/ [R=301,L]
+  RewriteRule ^service/vts/?$ /service/custom-software/ [R=301,L]
   RewriteRule ^(pricing|our-team|shop|shop-2|cart|cart-2|checkout|checkout-2|my-account|my-account-2|courses|sample-page|home|home-page-02|home-page-03|home-page-04)/?$ / [R=301,L]
 
   # /about-us -> /about-us/ when a matching exported folder exists

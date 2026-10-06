@@ -59,7 +59,7 @@ export function Icon({ name, size = 22 }: { name: IconKey; size?: number }) {
 /** Bevelled square tile that holds an icon. */
 export function IconTile({ name, size = 22 }: { name: IconKey; size?: number }) {
   return (
-    <span className="notch grid size-14 flex-none place-items-center bg-slate text-signal shadow-[inset_0_1px_0_rgb(255_255_255/0.08),inset_0_-3px_0_rgb(0_0_0/0.4),inset_0_0_0_1px_rgb(56_189_248/0.15)]">
+    <span className="notch grid size-14 flex-none place-items-center bg-slate text-signal shadow-[inset_0_1px_0_rgb(255_255_255/0.08),inset_0_-3px_0_rgb(0_0_0/0.4),inset_0_0_0_1px_rgb(57_255_136/0.15)]">
       <Icon name={name} size={size} />
     </span>
   );

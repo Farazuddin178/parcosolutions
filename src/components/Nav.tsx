@@ -9,7 +9,7 @@ import { buildServices, enterpriseServices, nav, site } from "@/content/site";
 
 const groups = [
   { label: "Build", items: buildServices },
-  { label: "Enterprise platforms", items: enterpriseServices },
+  { label: "ERP", items: enterpriseServices },
 ];
 
 const linkCls =

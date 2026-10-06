@@ -7,9 +7,9 @@ import { Reveal } from "../Reveal";
 export function HangingLamp({ className = "" }: { className?: string }) {
   return (
     <div aria-hidden className={`flex flex-col items-center ${className}`}>
-      <span className="h-3 w-2 rounded-full border border-[#33415a]" />
-      <span className="-mt-0.5 h-3 w-2 rounded-full border border-[#33415a]" />
-      <span className="relative mt-0.5 grid h-12 w-9 place-items-end justify-center border-2 border-signal/55 bg-signal/[0.06] pb-1 shadow-[0_0_34px_rgb(56_189_248/0.25)]">
+      <span className="h-3 w-2 rounded-full border border-[#24452f]" />
+      <span className="-mt-0.5 h-3 w-2 rounded-full border border-[#24452f]" />
+      <span className="relative mt-0.5 grid h-12 w-9 place-items-end justify-center border-2 border-signal/55 bg-signal/[0.06] pb-1 shadow-[0_0_34px_rgb(57_255_136/0.25)]">
         <Lamp />
       </span>
     </div>
