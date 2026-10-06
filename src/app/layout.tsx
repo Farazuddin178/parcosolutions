@@ -4,6 +4,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { site } from "@/content/site";
 import "./globals.css";
+import { asset } from "@/lib/asset";
 
 // Self-hosted at build time by next/font (no runtime Google Fonts request).
 const heading = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-heading" });
@@ -18,14 +19,14 @@ export const metadata: Metadata = {
   },
   description: site.description,
   icons: {
-    icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png" }],
-    apple: "/apple-touch-icon.png",
+    icon: [{ url: asset("/favicon.ico") }, { url: asset("/icon.png"), type: "image/png" }],
+    apple: asset("/apple-touch-icon.png"),
   },
   openGraph: {
     type: "website",
     siteName: site.name,
     locale: "en_IN",
-    images: [{ url: "/images/svc-custom.webp" }],
+    images: [{ url: asset("/images/svc-custom.webp") }],
   },
 };
 
@@ -53,7 +54,11 @@ const orgSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${heading.variable} ${geist.variable} ${code.variable}`}>
+    <html
+      lang="en"
+      className={`${heading.variable} ${geist.variable} ${code.variable}`}
+      style={{ "--smoke-img": `url(${asset("/images/smoke.png")})` } as React.CSSProperties}
+    >
       <body className="min-h-dvh overflow-x-clip">
         <a
           href="#main"

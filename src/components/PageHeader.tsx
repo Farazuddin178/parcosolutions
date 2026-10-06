@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { Container } from "./ui";
 import { Reveal } from "./Reveal";
+import { asset } from "@/lib/asset";
 
 /** Top of every inner page: breadcrumb, headline, lead and an optional visual. */
 export function PageHeader({
@@ -22,7 +23,7 @@ export function PageHeader({
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-[700px] bg-cover bg-center opacity-20 [mask-image:linear-gradient(180deg,#000,transparent_80%)]"
-        style={{ backgroundImage: "url(/images/dither-circuit.png)" }}
+        style={{ backgroundImage: `url(${asset("/images/dither-circuit.png")})` }}
       />
       <Container className="relative">
         <div className={`grid gap-12 ${aside ? "lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-16" : ""}`}>

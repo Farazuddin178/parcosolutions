@@ -4,6 +4,7 @@ import { ContactDetails } from "@/components/sections/Contact";
 import { PageHeader } from "@/components/PageHeader";
 import { Container, Figure } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -29,7 +30,7 @@ export default function ContactPage() {
         <Container>
           <Reveal>
             <Figure
-              src="/images/contact-office.webp"
+              src={asset("/images/contact-office.webp")}
               alt="Bright open-plan office corridor"
               ratio="aspect-[16/9] sm:aspect-[21/8]"
               sizes="100vw"

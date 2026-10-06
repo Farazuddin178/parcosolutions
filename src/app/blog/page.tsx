@@ -5,6 +5,7 @@ import { formatDate, getPosts, type Post } from "@/lib/wordpress";
 import { PageHeader } from "@/components/PageHeader";
 import { Button, Container } from "@/components/ui";
 import { Reveal } from "@/components/Reveal";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "Insights",
@@ -25,7 +26,7 @@ function PostImage({ post, className }: { post: Post; className: string }) {
     <div
       aria-hidden
       className={`relative overflow-hidden border border-line bg-coal bg-cover bg-center opacity-80 ${className}`}
-      style={{ backgroundImage: "url(/images/dither-circuit.png)" }}
+      style={{ backgroundImage: `url(${asset("/images/dither-circuit.png")})` }}
     />
   );
 }

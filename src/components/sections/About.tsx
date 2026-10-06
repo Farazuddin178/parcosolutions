@@ -3,6 +3,7 @@ import { industries } from "@/content/site";
 import { Terminal } from "../Terminal";
 import { Button, Container, Divider } from "../ui";
 import { Reveal } from "../Reveal";
+import { asset } from "@/lib/asset";
 
 export function About({ index = 7 }: { index?: number }) {
   return (
@@ -14,7 +15,7 @@ export function About({ index = 7 }: { index?: number }) {
           <Reveal className="relative">
             <div className="duo brackets relative aspect-[5/4] border border-line">
               <Image
-                src="/images/about-team.webp"
+                src={asset("/images/about-team.webp")}
                 alt="Developers collaborating around a table with laptops"
                 fill
                 sizes="(min-width: 1024px) 600px, 100vw"
@@ -25,7 +26,7 @@ export function About({ index = 7 }: { index?: number }) {
             <div
               aria-hidden
               className="pointer-events-none absolute -bottom-10 -left-10 hidden size-48 bg-cover opacity-40 [mask-image:radial-gradient(circle,#000_30%,transparent_70%)] lg:block"
-              style={{ backgroundImage: "url(/images/dither-circuit.png)" }}
+              style={{ backgroundImage: `url(${asset("/images/dither-circuit.png")})` }}
             />
           </Reveal>
 

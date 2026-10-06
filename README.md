@@ -36,7 +36,23 @@ npx serve out                # preview the exported site
 
 `npm run build` also runs `scripts/flatten-rsc.mjs`. Next 16 writes prefetch files into nested folders, but the browser requests flat file names. The script writes flat copies so client-side navigation works on a plain Apache host.
 
-## Deploying to GoDaddy cPanel
+## Hosting on GitHub Pages (current)
+
+`.github/workflows/deploy.yml` builds and publishes the site on every push to `main`, once a day (so new WordPress posts appear), and on demand from the Actions tab.
+
+- Live URL until a custom domain is connected: https://farazuddin178.github.io/parcosolutions/
+- The workflow sets `NEXT_PUBLIC_BASE_PATH=/parcosolutions` so links, images and icons work under that sub-path. Files from `public/` must be referenced through `asset()` in `src/lib/asset.ts`.
+
+### Connecting parcosolutions.in later
+
+1. GoDaddy DNS: four `A` records for `@` to `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, and a `CNAME` for `www` to `farazuddin178.github.io`.
+2. Move WordPress to a subdomain (e.g. `cms.parcosolutions.in`) on GoDaddy hosting, and add a repository variable `WP_URL` with that address.
+3. GitHub: Settings > Secrets and variables > Actions > Variables, add `CUSTOM_DOMAIN` = `parcosolutions.in`. Re-run the workflow. It drops the base path and writes the `CNAME` file.
+4. Settings > Pages: confirm the custom domain and tick "Enforce HTTPS".
+
+GitHub Pages ignores `.htaccess`, so the old-URL redirects in it only apply on Apache/cPanel.
+
+## Deploying to GoDaddy cPanel (alternative)
 
 1. **Move WordPress off the main domain first.** The static site replaces `public_html`, so WordPress needs its own home, e.g. a subdomain `cms.parcosolutions.in` (cPanel > Domains > Create subdomain, then move or clone the install with Installatron or WP Toolkit). Then set `WP_URL` and `NEXT_PUBLIC_WP_URL` to the new address and rebuild.
 2. Run `npm run build`.
@@ -44,14 +60,7 @@ npx serve out                # preview the exported site
 
 `.htaccess` handles HTTPS, trailing slashes, the custom 404 page, caching, and 301 redirects from retired WordPress URLs (pricing, our-team, shop, old service slugs).
 
-### Automatic deploys (optional)
-
-`.github/workflows/deploy.yml` builds on every push to `main`. To also upload to cPanel, add these in GitHub under **Settings > Secrets and variables > Actions**:
-
-- Secrets: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` (cPanel > FTP Accounts)
-- Variables (optional): `WP_URL`, `CF7_FORM_ID`, `FTP_DIR` (defaults to `./public_html/`)
-
-To rebuild when a post is published, send a `repository_dispatch` event of type `wordpress-update` from WordPress (for example with a webhook plugin) to `https://api.github.com/repos/Farazuddin178/parcosolutions/dispatches`, using a fine-grained token that has Contents read/write on this repo.
+To rebuild instantly when a post is published (instead of waiting for the daily build), send a `repository_dispatch` event of type `wordpress-update` from WordPress (for example with a webhook plugin) to `https://api.github.com/repos/Farazuddin178/parcosolutions/dispatches`, using a fine-grained token that has Contents read/write on this repo.
 
 ## Editing content
 

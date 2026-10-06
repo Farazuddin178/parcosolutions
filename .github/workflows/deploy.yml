@@ -1,18 +1,28 @@
-name: Build and deploy
+name: Deploy to GitHub Pages
 
-# Builds the static site and, when FTP secrets are configured, uploads /out
-# to GoDaddy cPanel. Runs on every push to main, on demand, and when
-# WordPress sends a repository_dispatch event (type: wordpress-update)
-# so new posts go live without touching the code.
+# Builds the static site and publishes it to GitHub Pages.
+# - Runs on every push to main, on demand, and once a day so new
+#   WordPress posts appear without a code change.
+# - Until a custom domain is connected the site lives at
+#   https://farazuddin178.github.io/parcosolutions/
+# - To switch to your own domain: Settings > Secrets and variables > Actions >
+#   Variables > add CUSTOM_DOMAIN = parcosolutions.in, then re-run this workflow.
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "30 0 * * *" # daily, 06:00 IST
   repository_dispatch:
     types: [wordpress-update]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 concurrency:
-  group: deploy
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -22,7 +32,7 @@ jobs:
       WP_URL: ${{ vars.WP_URL || 'https://parcosolutions.in' }}
       NEXT_PUBLIC_WP_URL: ${{ vars.WP_URL || 'https://parcosolutions.in' }}
       NEXT_PUBLIC_CF7_FORM_ID: ${{ vars.CF7_FORM_ID || '1253' }}
-      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+      CUSTOM_DOMAIN: ${{ vars.CUSTOM_DOMAIN }}
     steps:
       - uses: actions/checkout@v4
 
@@ -31,25 +41,33 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
+      - name: Choose base path
+        run: |
+          if [ -n "$CUSTOM_DOMAIN" ]; then
+            echo "NEXT_PUBLIC_BASE_PATH=" >> "$GITHUB_ENV"
+          else
+            echo "NEXT_PUBLIC_BASE_PATH=/${GITHUB_REPOSITORY#*/}" >> "$GITHUB_ENV"
+          fi
+
       - run: npm ci
       - run: npm run build
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: site
-          path: out
-          include-hidden-files: true
-          retention-days: 7
+      - name: Add CNAME for custom domain
+        if: env.CUSTOM_DOMAIN != ''
+        run: echo "$CUSTOM_DOMAIN" > out/CNAME
 
-      # Add FTP_SERVER, FTP_USERNAME and FTP_PASSWORD under
-      # Settings > Secrets and variables > Actions to enable this step.
-      - name: Upload to cPanel
-        if: env.FTP_SERVER != ''
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
-          local-dir: ./out/
-          server-dir: ${{ vars.FTP_DIR || './public_html/' }}
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -3,6 +3,7 @@ import { process } from "@/content/site";
 import { Icon } from "../Icon";
 import { Button, Container, Divider } from "../ui";
 import { Reveal } from "../Reveal";
+import { asset } from "@/lib/asset";
 
 const builds = [
   "Case management",
@@ -21,7 +22,7 @@ export function Process() {
   return (
     <section id="process" className="relative overflow-hidden py-24 lg:py-32">
       <div aria-hidden className="duo absolute inset-0">
-        <Image src="/images/process-team.webp" alt="" fill sizes="100vw" className="object-cover opacity-90" />
+        <Image src={asset("/images/process-team.webp")} alt="" fill sizes="100vw" className="object-cover opacity-90" />
       </div>
       <div
         aria-hidden

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react/dist/ssr";
 import { buildServices, enterpriseServices, nav, site } from "@/content/site";
 import { Container } from "./ui";
+import { asset } from "@/lib/asset";
 
 const heading = "font-pixel text-[10px] uppercase tracking-[0.18em] text-dim";
 const link = "text-[15px] text-fog transition-colors hover:text-signal";
@@ -13,7 +14,7 @@ export function Footer() {
       <Container className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div>
           <Link href="/" className="inline-flex items-center gap-3" aria-label={`${site.name} home`}>
-            <Image src="/parco-mark.png" alt="" width={210} height={271} className="h-10 w-auto" />
+            <Image src={asset("/parco-mark.png")} alt="" width={210} height={271} className="h-10 w-auto" />
             <span className="font-pixel text-xs uppercase tracking-[0.14em] text-bone">Parco Solutions</span>
           </Link>
           <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-fog">{site.description}</p>
