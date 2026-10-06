@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react/dist/ssr";
-import { nav, services, site } from "@/content/site";
+import { buildServices, enterpriseServices, nav, site } from "@/content/site";
 import { Container } from "./ui";
 
 const heading = "font-pixel text-[10px] uppercase tracking-[0.18em] text-dim";
@@ -22,7 +22,17 @@ export function Footer() {
         <div>
           <p className={heading}>Services</p>
           <ul className="mt-4 grid gap-2.5">
-            {services.map((s) => (
+            {buildServices.map((s) => (
+              <li key={s.slug}>
+                <Link href={`/service/${s.slug}/`} className={link}>
+                  {s.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className={`${heading} mt-8`}>Platforms</p>
+          <ul className="mt-4 grid gap-2.5">
+            {enterpriseServices.map((s) => (
               <li key={s.slug}>
                 <Link href={`/service/${s.slug}/`} className={link}>
                   {s.name}

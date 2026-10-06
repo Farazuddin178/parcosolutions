@@ -1,19 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { EB_Garamond, Geist, Silkscreen } from "next/font/google";
+import { Geist, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { site } from "@/content/site";
 import "./globals.css";
 
 // Self-hosted at build time by next/font (no runtime Google Fonts request).
-const garamond = EB_Garamond({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-garamond" });
+const heading = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-heading" });
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
-const silkscreen = Silkscreen({ subsets: ["latin"], weight: "400", variable: "--font-silkscreen" });
+const code = JetBrains_Mono({ subsets: ["latin"], weight: ["500", "600"], variable: "--font-code" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Parco Solutions | ERP, SAP, Web and Fleet Tracking Systems",
+    default: "Parco Solutions | Custom Software, Management Systems and Websites",
     template: "%s | Parco Solutions",
   },
   description: site.description,
@@ -25,12 +25,12 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
     locale: "en_IN",
-    images: [{ url: "/images/hero-circuit.webp", width: 1600, height: 1067 }],
+    images: [{ url: "/images/svc-custom.webp" }],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0d0c",
+  themeColor: "#06080c",
 };
 
 const orgSchema = {
@@ -53,7 +53,7 @@ const orgSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${garamond.variable} ${geist.variable} ${silkscreen.variable}`}>
+    <html lang="en" className={`${heading.variable} ${geist.variable} ${code.variable}`}>
       <body className="min-h-dvh overflow-x-clip">
         <a
           href="#main"

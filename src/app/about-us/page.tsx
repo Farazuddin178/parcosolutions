@@ -10,7 +10,7 @@ import { Reveal } from "@/components/Reveal";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Parco Solutions is an IT services and software development company delivering enterprise applications, websites, mobile apps, IT staffing and corporate training.",
+    "Parco Solutions is an IT solutions company that builds custom software, management systems, websites and mobile apps for businesses.",
   alternates: { canonical: "/about-us/" },
 };
 
@@ -19,8 +19,8 @@ export default function AboutPage() {
     <>
       <PageHeader
         crumb={[{ label: "About" }]}
-        title="Smart technology for growing businesses"
-        lead="An IT services and software development company helping organisations transform through technology that is built to last."
+        title="We build the software your business runs on"
+        lead="An IT solutions company building custom software, management systems and websites around the way our clients actually work."
         aside={
           <Figure
             src="/images/about-team.webp"
@@ -46,9 +46,9 @@ export default function AboutPage() {
           <Reveal className="mt-14 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-20">
             <div className="grid max-w-[64ch] gap-6 text-lg leading-relaxed text-fog">
               <p>
-                <span className="text-bone">Parco Solutions</span> delivers high-quality software, enterprise
-                applications, mobile apps and web solutions that help organisations improve efficiency, streamline
-                operations and accelerate growth.
+                <span className="text-bone">Parco Solutions</span> builds custom software for businesses that have
+                outgrown spreadsheets, paper registers and one-size-fits-all tools: management systems, client portals,
+                websites and mobile apps, each shaped around how the client works.
               </p>
               <p>
                 Our team combines technical excellence, industry knowledge and a customer-centric approach. From startups
@@ -56,9 +56,10 @@ export default function AboutPage() {
                 solutions that drive measurable results.
               </p>
               <p>
-                Alongside services, we build our own products, <span className="text-bone">Ocean ERP</span> and our{" "}
-                <span className="text-bone">Vehicle Tracking System</span>, designed to simplify operations and improve
-                productivity.
+                Our work ranges from a Case Management System for a High Court advocate to a website for a
+                multi-speciality hospital. We also implement SAP and ERP, provide IT staffing and corporate training, and
+                offer our own <span className="text-bone">Ocean ERP</span> and{" "}
+                <span className="text-bone">Vehicle Tracking System</span>.
               </p>
               <p>
                 We believe technology is a strategic asset, not just software. A commitment to quality, transparency and

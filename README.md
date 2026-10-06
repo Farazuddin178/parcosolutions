@@ -1,6 +1,6 @@
 # Parco Solutions website
 
-Static Next.js frontend for [parcosolutions.in](https://parcosolutions.in), with WordPress as a headless CMS. The build outputs plain HTML, CSS and JS in `out/`, which is uploaded to GoDaddy cPanel. No Node.js server is needed in production.
+Static Next.js frontend for [parcosolutions.in](https://parcosolutions.in), an IT solutions company building custom software, management systems and websites. WordPress is the headless CMS. The build outputs plain HTML, CSS and JS in `out/`, which is uploaded to GoDaddy cPanel. No Node.js server is needed in production.
 
 ## What comes from where
 
