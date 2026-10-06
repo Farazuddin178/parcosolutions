@@ -25,7 +25,7 @@ export function Process() {
       </div>
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(180deg,var(--color-ink)_0%,rgb(6_8_12/0.6)_30%,rgb(6_8_12/0.75)_70%,var(--color-ink)_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(180deg,var(--color-ink)_0%,rgb(2_5_3/0.6)_30%,rgb(2_5_3/0.75)_70%,var(--color-ink)_100%)]"
       />
 
       <Container className="relative">

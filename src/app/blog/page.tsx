@@ -8,7 +8,7 @@ import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Insights",
-  description: "Articles from Parco Solutions on ERP, SAP, web development and the systems behind growing businesses.",
+  description: "Articles from Parco Solutions on custom software, management systems, websites and the technology behind growing businesses.",
   alternates: { canonical: "/blog/" },
 };
 
@@ -39,7 +39,7 @@ export default async function BlogPage() {
       <PageHeader
         crumb={[{ label: "Insights" }]}
         title="Insights"
-        lead="Notes on ERP, SAP, web development and the systems behind growing businesses."
+        lead="Notes on custom software, management systems, websites and the technology behind growing businesses."
       />
 
       <section className="smoke relative pb-24">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { industries, stats } from "@/content/site";
+import { industries } from "@/content/site";
 import { PageHeader } from "@/components/PageHeader";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { Work } from "@/components/sections/Work";
@@ -57,9 +57,8 @@ export default function AboutPage() {
               </p>
               <p>
                 Our work ranges from a Case Management System for a High Court advocate to a website for a
-                multi-speciality hospital. We also implement SAP and ERP, provide IT staffing and corporate training, and
-                offer our own <span className="text-bone">Ocean ERP</span> and{" "}
-                <span className="text-bone">Vehicle Tracking System</span>.
+                multi-speciality hospital. We also provide ERP consulting, IT staffing and corporate training, and
+                offer our own <span className="text-bone">Ocean ERP</span>.
               </p>
               <p>
                 We believe technology is a strategic asset, not just software. A commitment to quality, transparency and
@@ -69,14 +68,6 @@ export default function AboutPage() {
             </div>
 
             <div className="grid content-start gap-10">
-              <dl className="grid gap-px border border-line bg-line">
-                {stats.map((s) => (
-                  <div key={s.label} className="flex items-baseline justify-between gap-6 bg-ink px-6 py-5">
-                    <dt className="text-fog">{s.label}</dt>
-                    <dd className="font-pixel text-3xl text-signal">{s.value}</dd>
-                  </div>
-                ))}
-              </dl>
               <div>
                 <p className="text-sm text-fog">Industries we serve</p>
                 <ul className="mt-3 flex flex-wrap gap-2">

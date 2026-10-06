@@ -3,11 +3,12 @@ import { ArrowUpRight, Check } from "@phosphor-icons/react/dist/ssr";
 import { work, type CaseStudy } from "@/content/site";
 import { Container, Divider, SectionIntro, Tag } from "../ui";
 import { Reveal } from "../Reveal";
+import { Tilt } from "../fx/Tilt";
 
 function CaseCard({ study, ratio, sizes }: { study: CaseStudy; ratio: string; sizes: string }) {
   return (
     <article className="group">
-      <div className="relative">
+      <Tilt>
         <div className={`duo duo-live brackets ${ratio} border border-line`}>
           <Image src={study.image} alt={study.imageAlt} fill sizes={sizes} className="object-cover" />
         </div>
@@ -16,7 +17,7 @@ function CaseCard({ study, ratio, sizes }: { study: CaseStudy; ratio: string; si
             <Image src={study.detailImage} alt={study.detailAlt ?? ""} fill sizes="300px" className="object-cover" />
           </div>
         )}
-      </div>
+      </Tilt>
 
       <div className="mt-10 sm:mt-14">
         <p className="font-pixel text-[10px] uppercase tracking-[0.18em] text-dim">{study.sector}</p>

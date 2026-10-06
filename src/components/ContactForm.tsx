@@ -16,8 +16,7 @@ const TOPICS = [
   "Website",
   "Mobile app",
   "Cloud, AI or data",
-  "SAP, ERP or Ocean ERP",
-  "Vehicle tracking",
+  "ERP or Ocean ERP",
   "Something else",
 ];
 

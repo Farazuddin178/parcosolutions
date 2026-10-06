@@ -30,7 +30,7 @@ export function Footer() {
               </li>
             ))}
           </ul>
-          <p className={`${heading} mt-8`}>Platforms</p>
+          <p className={`${heading} mt-8`}>ERP</p>
           <ul className="mt-4 grid gap-2.5">
             {enterpriseServices.map((s) => (
               <li key={s.slug}>

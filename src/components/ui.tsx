@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import type { ComponentProps, ReactNode } from "react";
+import { Scramble } from "./fx/Scramble";
 
 export function Container({ className = "", children }: { className?: string; children: ReactNode }) {
   return <div className={`mx-auto w-full max-w-[1320px] px-4 sm:px-6 lg:px-10 ${className}`}>{children}</div>;
@@ -26,7 +27,7 @@ export function Divider({ index, title }: { index: number; title: string }) {
       <span className="mb-[3px] flex items-center gap-3 font-pixel text-[11px] uppercase tracking-[0.18em] text-fog">
         <span className="gem" />
         <span className="whitespace-nowrap">
-          {ROMAN[index - 1]} <span className="text-dim">/</span> {title}
+          {ROMAN[index - 1]} <span className="text-dim">/</span> <Scramble text={title} />
         </span>
         <span className="gem" />
       </span>
@@ -38,7 +39,7 @@ export function Divider({ index, title }: { index: number; title: string }) {
 
 export function Tag({ children }: { children: ReactNode }) {
   return (
-    <span className="notch inline-block bg-signal/10 px-3 py-1.5 font-pixel text-[11px] uppercase tracking-wider text-signal shadow-[inset_0_0_0_1px_rgb(56_189_248/0.55)]">
+    <span className="notch inline-block bg-signal/10 px-3 py-1.5 font-pixel text-[11px] uppercase tracking-wider text-signal shadow-[inset_0_0_0_1px_rgb(57_255_136/0.55)]">
       {children}
     </span>
   );

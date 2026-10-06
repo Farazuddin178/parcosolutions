@@ -7,7 +7,7 @@ import { Reveal } from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: "Talk to Parco Solutions about ERP, SAP, web and app development, fleet tracking, cloud, AI or data projects.",
+  description: "Talk to Parco Solutions about custom software, management systems, websites, mobile apps, ERP, cloud, AI or data projects.",
   alternates: { canonical: "/contact-us/" },
 };
 

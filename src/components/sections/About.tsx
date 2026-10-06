@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { industries, stats } from "@/content/site";
+import { industries } from "@/content/site";
+import { Terminal } from "../Terminal";
 import { Button, Container, Divider } from "../ui";
 import { Reveal } from "../Reveal";
 
@@ -37,14 +38,9 @@ export function About({ index = 7 }: { index?: number }) {
               practices, hospitals, schools and growing businesses, then host, support and improve them.
             </p>
 
-            <dl className="mt-10 grid grid-cols-3 gap-px border border-line bg-line">
-              {stats.map((s) => (
-                <div key={s.label} className="bg-ink px-4 py-5 sm:px-6">
-                  <dt className="text-xs text-fog sm:text-sm">{s.label}</dt>
-                  <dd className="mt-2 font-pixel text-2xl text-signal sm:text-3xl">{s.value}</dd>
-                </div>
-              ))}
-            </dl>
+            <div className="mt-10">
+              <Terminal />
+            </div>
 
             <p className="mt-10 text-sm text-fog">Industries we serve</p>
             <ul className="mt-3 flex flex-wrap gap-2">
